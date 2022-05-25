@@ -1,5 +1,8 @@
 const buttons = document.querySelectorAll('button');
 const resultsText = document.getElementById('resultsText');
+const playerScoreSpan = document.getElementById('playerScore');
+const compScoreSpan = document.getElementById('compScore');
+
 let computerScore = 0;
 let playerScore = 0;
 let playerSelection = '';
@@ -10,6 +13,8 @@ buttons.forEach((button) => {
         playerSelection = button.id;
         computerSelection = computerPlay();
         resultsText.innerText = `You chose ${button.id}. ` + (playRound(playerSelection,computerSelection));
+        playerScoreSpan.innerText = `${playerScore}`;
+        compScoreSpan.innerText = `${computerScore}`;
         if (playerScore == 5 || computerScore == 5){
             game();
         }
