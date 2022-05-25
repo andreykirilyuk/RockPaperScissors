@@ -1,12 +1,19 @@
 const buttons = document.querySelectorAll('button');
+const resultsText = document.getElementById('resultsText');
+let computerScore = 0;
+let playerScore = 0;
 let playerSelection = '';
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
-        console.log(`Clicked the ${button.id} button.`);
+        // console.log(`You chose ${button.id}.`);
         playerSelection = button.id;
         computerSelection = computerPlay();
-        console.log(playRound(playerSelection,computerSelection));
+        resultsText.innerText = `You chose ${button.id}. ` + (playRound(playerSelection,computerSelection));
+        if (playerScore == 5 || computerScore == 5){
+            game();
+        }
+        
     })});
 
 function computerPlay() {
@@ -14,9 +21,6 @@ function computerPlay() {
     const computerSelection = choice[Math.floor(Math.random() * choice.length)];
     return computerSelection;
 }
-
-let computerScore = 0;
-let playerScore = 0;
 
 function playRound(playerSelection,computerSelection) {
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
@@ -47,19 +51,22 @@ function playRound(playerSelection,computerSelection) {
 }
 
 function game() {
-    for (let i = 0; i < 5; i++) {
-        // let playerSelection = prompt('Type: Rock, Paper, or Scissors');
-        // playerSelection = playerSelection.toLowerCase();
-        // computerSelection = computerPlay()
-        // console.log(playRound(playerSelection,computerSelection))
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     let playerSelection = prompt('Type: Rock, Paper, or Scissors');
+    //     playerSelection = playerSelection.toLowerCase();
+    //     computerSelection = computerPlay()
+    //     console.log(playRound(playerSelection,computerSelection))
+    // }
     if (playerScore > computerScore) {
-        console.log(`You're the winner! Final Score: ${playerScore} to ${computerScore}`);
+        // console.log(`You're the winner! Final Score: ${playerScore} to ${computerScore}`);
+        resultsText.innerText = `You're the winner! Final Score: ${playerScore} to ${computerScore}.`;
     }
     else if (computerScore > playerScore) {
-        console.log(`Sorry, you lose. Final Score: ${playerScore} to ${computerScore}`);
+        // console.log(`Sorry, you lose. Final Score: ${playerScore} to ${computerScore}`);
+        resultsText.innerHTML = `Sorry, you lose. Final Score: ${playerScore} to ${computerScore}.`;
     }
-    else console.log(`It's a tie! Final Score: ${playerScore} to ${computerScore}`);
+    // else console.log(`It's a tie! Final Score: ${playerScore} to ${computerScore}`);
+    else resultsText.innerHTML = `It's a tie! Final Score: ${playerScore} to ${computerScore}.`;
 }
 
 // game();
