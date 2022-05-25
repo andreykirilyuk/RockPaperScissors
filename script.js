@@ -1,3 +1,9 @@
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        console.log(`Clicked the ${button.id} button.`);
+    })});
+
 function computerPlay() {
     const choice = ['rock', 'paper', 'scissors'];
     const computerSelection = choice[Math.floor(Math.random() * choice.length)];
@@ -51,4 +57,4 @@ function game() {
     else console.log(`It's a tie! Final Score: ${playerScore} to ${computerScore}`);
 }
 
-game();
+// game();
